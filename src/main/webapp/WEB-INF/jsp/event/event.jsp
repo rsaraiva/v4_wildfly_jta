@@ -13,8 +13,17 @@
                 <tr>
                     <td>${item.id}</td>
                     <td>${item.description}</td>
+                    <td>${item.formattedDate}</td>
                 </tr>
             </c:forEach>
         </table>
+        <br/>
+        <form action="${linkTo[EventController].add}" method="post">
+            <span>Description: </span>
+            <input type="input" name="event.description"/>
+            <span>Date </span>
+            <input type="input" name="event.date"/>
+            <button>Add</button>
+        </form>
     </body>
 </html>

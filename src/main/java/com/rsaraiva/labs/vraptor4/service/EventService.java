@@ -4,7 +4,6 @@
 package com.rsaraiva.labs.vraptor4.service;
 
 import com.rsaraiva.labs.vraptor4.model.Event;
-import java.time.LocalDate;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -16,8 +15,8 @@ public class EventService {
     @PersistenceContext
     private EntityManager em;
 
-    public void persist(String description, LocalDate date) {
-        em.persist(new Event(description, date));
+    public void persist(Event event) {
+        em.persist(event);
     }
     
     public List<Event> findAll() {

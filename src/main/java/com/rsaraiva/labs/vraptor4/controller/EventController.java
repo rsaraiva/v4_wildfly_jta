@@ -3,12 +3,13 @@
  */
 package com.rsaraiva.labs.vraptor4.controller;
 
-import com.rsaraiva.labs.vraptor4.service.EventService;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
+import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
+import com.rsaraiva.labs.vraptor4.model.Event;
+import com.rsaraiva.labs.vraptor4.service.EventService;
 import java.io.Serializable;
-import java.time.LocalDate;
 import javax.inject.Inject;
 
 @Controller
@@ -22,9 +23,9 @@ public class EventController implements Serializable {
         result.include("events", service.findAll());
     }
 
-    @Get("/events/add/{description}/{date}")
-    public void add(String description, LocalDate date) {
-        service.persist(description, date);
+    @Post
+    public void add(Event event) {
+        service.persist(event);
         result.redirectTo(this).event();
     }
 }

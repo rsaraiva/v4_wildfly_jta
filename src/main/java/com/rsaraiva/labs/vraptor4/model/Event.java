@@ -3,10 +3,9 @@
  */
 package com.rsaraiva.labs.vraptor4.model;
 
-import com.rsaraiva.labs.vraptor4.jpa.LocalDatePersistenceConverter;
 import java.io.Serializable;
 import java.time.LocalDate;
-import javax.persistence.Convert;
+import java.time.format.DateTimeFormatter;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,8 +18,9 @@ public class Event implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    @Convert(converter = LocalDatePersistenceConverter.class)
     private LocalDate date;
+    
+    private String description;
 
     public Event() {
     }
@@ -29,8 +29,6 @@ public class Event implements Serializable {
         this.description = description;
         this.date = date;
     }
-    
-    private String description;
 
     public Integer getId() {
         return id;
@@ -42,6 +40,10 @@ public class Event implements Serializable {
 
     public LocalDate getDate() {
         return date;
+    }
+    
+    public String getFormattedDate() {
+        return date.format(DateTimeFormatter.ofPattern("dd/MM/yyy"));
     }
 
     public void setDate(LocalDate date) {
